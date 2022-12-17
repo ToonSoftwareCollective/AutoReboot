@@ -1,2 +1,5 @@
+1.0.2
+- 3 times per week restart
+
 1.0.1
 - First Release:
