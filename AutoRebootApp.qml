@@ -24,7 +24,7 @@ App {
 		timeStr = i18n.dateTime(now2, i18n.time_yes)
 		dateStr = i18n.dateTime(now2, i18n.mon_full)
 		var day = parseInt(now.getDay())
-		if (day == 1 || day == 3 || day == 5) && timeStr == "03:30" ){console.log(timeStr);console.log(day);console.log("restarting");restartToon()}
+		if ((day == 1 || day == 3 || day == 5) & timeStr == "03:30" ){console.log(timeStr);console.log(day);console.log("restarting");restartToon()}
 	}
 
 	Timer {
@@ -48,7 +48,4 @@ App {
 			configMsgUuid = deviceUuid
 		}
 	}
-
-
-
 }

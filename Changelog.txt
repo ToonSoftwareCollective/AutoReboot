@@ -1,3 +1,6 @@
+1.0.3
+- error solved
+
 1.0.2
 - 3 times per week restart
 
