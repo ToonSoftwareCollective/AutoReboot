@@ -33,6 +33,21 @@ Tile {
 	}
 
 	Text {
+		id: txtLast
+		text: app.lastStart
+		color: dimmableColors.clockTileColor
+		anchors {
+			horizontalCenter: parent.horizontalCenter
+			top: txtTimeBig.bottom
+			topMargin:2
+		}
+		horizontalAlignment: Text.AlignHCenter
+		font.pixelSize: 11
+		font.family: qfont.regular.name
+		visible: !dimState
+	}
+
+	Text {
 		id: txtDate
 		text: app.dateStr
 		color: dimmableColors.clockTileColor
@@ -46,5 +61,8 @@ Tile {
 		font.family: qfont.regular.name
 		visible: !dimState
 	}
+
+
+
 
 }

@@ -12,11 +12,22 @@ App {
 
 	property string timeStr
 	property string dateStr
+	property string lastStart
+
 
 
 	function init() {
 		registry.registerWidget("tile", tileUrl, autoRebootApp, null, {thumbLabel: qsTr("Auto Reboot"), thumbIcon: thumbnailIcon, thumbCategory: "general", thumbWeight: 30, baseTileWeight: 10, baseTileSolarWeight: 10, thumbIconVAlignment: "center"});
 	}
+
+	Component.onCompleted: {
+ 		var now = new Date()
+		var now2 = now.getTime()
+		timeStr = i18n.dateTime(now2, i18n.time_yes)
+		dateStr = i18n.dateTime(now2, i18n.date_yes)
+		lastStart = "(laaste start: " + dateStr + " " + timeStr	+ ")"
+	}
+
 
 	function updateClockTiles() {
 		var now = new Date()
@@ -24,7 +35,7 @@ App {
 		timeStr = i18n.dateTime(now2, i18n.time_yes)
 		dateStr = i18n.dateTime(now2, i18n.mon_full)
 		var day = parseInt(now.getDay())
-		if ((day == 1 || day == 3 || day == 5) & timeStr == "03:30" ){console.log(timeStr);console.log(day);console.log("restarting");restartToon()}
+		if ((day == 1 || day == 3 || day == 5) & (timeStr == "3:30" || timeStr == "03:30") ){console.log(timeStr);console.log(day);console.log("restarting");restartToon()}
 	}
 
 	Timer {
