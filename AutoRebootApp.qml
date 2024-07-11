@@ -26,25 +26,23 @@ App {
 		timeStr = i18n.dateTime(now2, i18n.time_yes)
 		dateStr = i18n.dateTime(now2, i18n.date_yes)
 		lastStart = "(laaste start: " + dateStr + " " + timeStr	+ ")"
-	}
-
-
-	function updateClockTiles() {
-		var now = new Date()
-		var now2 = now.getTime()
-		timeStr = i18n.dateTime(now2, i18n.time_yes)
-		dateStr = i18n.dateTime(now2, i18n.mon_full)
-		var day = parseInt(now.getDay())
-		if ((day == 1 || day == 3 || day == 5) & (timeStr == "3:30" || timeStr == "03:30") ){console.log(timeStr);console.log(day);console.log("restarting");restartToon()}
+	
+		// calculate new restart interval to two days later at 03:30
+		var nowUtc = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours(), now.getMinutes(), now.getSeconds(),now.getMilliseconds());
+		var nextRestartDate = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate() + 2, 3, 30, 0, 0);
+		datetimeTimer.interval = nextRestartDate - nowUtc;
+		datetimeTimer.start();
+		console.log("Autorestart in:" + (nextRestartDate - nowUtc) + " ms from: " + now);
 	}
 
 	Timer {
 		id: datetimeTimer
-		interval: 60000
-		triggeredOnStart: true
-		running: true
-		repeat: true
-		onTriggered: {updateClockTiles()}
+		triggeredOnStart: false
+		running: false
+		repeat: false
+		onTriggered: {
+			restartToon()
+		}
 	}
 	
 	function restartToon() {
