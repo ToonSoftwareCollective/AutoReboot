@@ -11,26 +11,46 @@ Tile {
 		id: tileTitle
 		anchors {
 			baseline: parent.top
-			baselineOffset: 30
+			baselineOffset: isNxt? 30 : 20
 			horizontalCenter: parent.horizontalCenter
 		}
 		font {
-			family: qfont.regular.name
+			family: qfont.bold.name
 			pixelSize: qfont.tileTitle
 		}
 		color: !dimState? "black" : "white"
-		text: "Auto Reboot"
+		text: "  Volgende\nAuto Reboot"
+	}
+	Text {
+		id: txtDate
+		text: app.dateStr
+		color: dimmableColors.clockTileColor
+		anchors {
+			horizontalCenter: parent.horizontalCenter
+			top: tileTitle.bottom
+			topMargin:isNxt? 20 : 15
+		}
+		horizontalAlignment: Text.AlignHCenter
+		font.pixelSize: qfont.tileTitle
+		font.family: qfont.regular.name
+		visible: !dimState
 	}
 
 	Text {
 		id: txtTimeBig
 		text: app.timeStr
 		color: dimmableColors.clockTileColor
-		anchors.centerIn: parent
+		anchors {
+			horizontalCenter: parent.horizontalCenter
+			top: txtDate.bottom
+		}
+
 		horizontalAlignment: Text.AlignHCenter
-		font.pixelSize: dimState ? qfont.clockFaceText : qfont.timeAndTemperatureText
+		font.pixelSize: qfont.tileTitle
 		font.family: qfont.regular.name
 	}
+
+
 
 	Text {
 		id: txtLast
@@ -39,29 +59,13 @@ Tile {
 		anchors {
 			horizontalCenter: parent.horizontalCenter
 			top: txtTimeBig.bottom
-			topMargin:2
+			topMargin:isNxt? 15 : 12
 		}
 		horizontalAlignment: Text.AlignHCenter
-		font.pixelSize: 11
+		font.pixelSize: isNxt? 15 : 12
 		font.family: qfont.regular.name
 		visible: !dimState
 	}
-
-	Text {
-		id: txtDate
-		text: app.dateStr
-		color: dimmableColors.clockTileColor
-		anchors {
-			horizontalCenter: parent.horizontalCenter
-			baseline: parent.bottom
-			baselineOffset: designElements.vMarginNeg16
-		}
-		horizontalAlignment: Text.AlignHCenter
-		font.pixelSize: qfont.tileTitle
-		font.family: qfont.regular.name
-		visible: !dimState
-	}
-
 
 
 

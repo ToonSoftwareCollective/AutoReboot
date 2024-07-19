@@ -25,11 +25,14 @@ App {
 		var now2 = now.getTime()
 		timeStr = i18n.dateTime(now2, i18n.time_yes)
 		dateStr = i18n.dateTime(now2, i18n.date_yes)
-		lastStart = "(laaste start: " + dateStr + " " + timeStr	+ ")"
+		lastStart = "(laatste start: " + dateStr + " " + timeStr	+ ")"
 	
 		// calculate new restart interval to two days later at 03:30
 		var nowUtc = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours(), now.getMinutes(), now.getSeconds(),now.getMilliseconds());
 		var nextRestartDate = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate() + 2, 3, 30, 0, 0);
+		timeStr = "03:00"
+		dateStr = i18n.dateTime(nextRestartDate , i18n.date_yes)
+
 		datetimeTimer.interval = nextRestartDate - nowUtc;
 		datetimeTimer.start();
 		console.log("Autorestart in:" + (nextRestartDate - nowUtc) + " ms from: " + now);
